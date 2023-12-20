@@ -3,11 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'content_manager_home_page_model.dart';
-export 'content_manager_home_page_model.dart';
 
 class ContentManagerHomePageWidget extends StatefulWidget {
   const ContentManagerHomePageWidget({Key? key}) : super(key: key);
@@ -17,23 +13,20 @@ class ContentManagerHomePageWidget extends StatefulWidget {
       _ContentManagerHomePageWidgetState();
 }
 
-class _ContentManagerHomePageWidgetState
-    extends State<ContentManagerHomePageWidget> {
-  late ContentManagerHomePageModel _model;
+class _ContentManagerHomePageWidgetState extends State<ContentManagerHomePageWidget> {
+
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContentManagerHomePageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
 
     super.dispose();
   }
@@ -56,7 +49,7 @@ class _ContentManagerHomePageWidgetState
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               'vo1u2obl' /* Content Manager Home Page */,
@@ -74,19 +67,19 @@ class _ContentManagerHomePageWidgetState
         elevation: 0.0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0.00, -1.00),
+        alignment: const AlignmentDirectional(0.00, -1.00),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570.0,
           ),
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'xce2cs2x' /* Welcome : Content Manager */,
@@ -101,10 +94,10 @@ class _ContentManagerHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       '6tcdc4uv' /* welcome to Our Application  */,
@@ -115,9 +108,9 @@ class _ContentManagerHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(99.0),
                     child: Image.network(
@@ -130,7 +123,7 @@ class _ContentManagerHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '5pdnzeu8' /* user : email@gmail.com */,
@@ -147,9 +140,9 @@ class _ContentManagerHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed('ProfilePage');
@@ -161,13 +154,13 @@ class _ContentManagerHomePageWidgetState
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -176,9 +169,9 @@ class _ContentManagerHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.safePop();
@@ -190,13 +183,13 @@ class _ContentManagerHomePageWidgetState
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

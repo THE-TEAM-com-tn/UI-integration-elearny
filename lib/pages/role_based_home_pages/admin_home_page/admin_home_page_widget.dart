@@ -3,11 +3,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'admin_home_page_model.dart';
-export 'admin_home_page_model.dart';
+
+
 
 class AdminHomePageWidget extends StatefulWidget {
   const AdminHomePageWidget({Key? key}) : super(key: key);
@@ -17,21 +15,19 @@ class AdminHomePageWidget extends StatefulWidget {
 }
 
 class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
-  late AdminHomePageModel _model;
+
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AdminHomePageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
 
     super.dispose();
   }
@@ -55,21 +51,21 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
         children: [
           Expanded(
             child: Align(
-              alignment: AlignmentDirectional(0.00, 0.00),
+              alignment: const AlignmentDirectional(0.00, 0.00),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 570.0,
                 ),
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Text(
                           FFLocalizations.of(context).getText(
                             'xzalwsjg' /* Welcome : Admin */,
@@ -87,9 +83,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 10.0, 16.0, 10.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -101,9 +97,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 20.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(99.0),
@@ -117,7 +113,7 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Text(
                           FFLocalizations.of(context).getText(
                             '4lxko8x5' /* user : email@gmail.com */,
@@ -137,9 +133,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 18.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -151,15 +147,15 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                             options: FFButtonOptions(
                               width: 270.0,
                               height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle:
                                   FlutterFlowTheme.of(context).titleSmall,
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -168,9 +164,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 18.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -182,15 +178,15 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                             options: FFButtonOptions(
                               width: 270.0,
                               height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle:
                                   FlutterFlowTheme.of(context).titleSmall,
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -199,9 +195,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 18.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -213,15 +209,15 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                             options: FFButtonOptions(
                               width: 270.0,
                               height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle:
                                   FlutterFlowTheme.of(context).titleSmall,
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

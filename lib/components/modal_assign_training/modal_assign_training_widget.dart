@@ -13,9 +13,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:octo_image/octo_image.dart';
-import 'package:provider/provider.dart';
-import 'modal_assign_training_model.dart';
-export 'modal_assign_training_model.dart';
 
 class ModalAssignTrainingWidget extends StatefulWidget {
   const ModalAssignTrainingWidget({Key? key}) : super(key: key);
@@ -27,7 +24,17 @@ class ModalAssignTrainingWidget extends StatefulWidget {
 
 class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
     with TickerProviderStateMixin {
-  late ModalAssignTrainingModel _model;
+     
+
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
+  
+  
+  
 
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
@@ -38,8 +45,8 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 400.ms,
-          begin: Offset(0.0, 100.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 100.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -48,16 +55,15 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
+    
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ModalAssignTrainingModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+     
+   textController ??= TextEditingController();
+   textFieldFocusNode ??= FocusNode();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -71,8 +77,8 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
     super.dispose();
   }
 
@@ -96,19 +102,19 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
               Container(
                 width: 100.0,
                 height: 100.0,
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
               ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 530.0,
                 ),
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -134,15 +140,15 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 730.0,
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 12.0,
                       color: Color(0x1E000000),
@@ -152,14 +158,14 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 16.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -175,9 +181,9 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).accent1,
                                   textStyle:
@@ -209,11 +215,11 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0x4DF5898B),
+                                  color: const Color(0x4DF5898B),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -254,9 +260,9 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -280,7 +286,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
 
                         // userEmail container
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 1.0),
                           child: Container(
                             width: double.infinity,
@@ -291,14 +297,14 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                 BoxShadow(
                                   blurRadius: 0.0,
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  offset: Offset(0.0, 1.0),
+                                  offset: const Offset(0.0, 1.0),
                                 )
                               ],
                               borderRadius: BorderRadius.circular(0.0),
                               shape: BoxShape.rectangle,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 5.0, 30.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -306,14 +312,14 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                 children: [
                                   Flexible(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 8.0),
                                       child: AnimatedContainer(
-                                        duration: Duration(milliseconds: 100),
+                                        duration: const Duration(milliseconds: 100),
                                         curve: Curves.easeInOut,
                                         width: 450.0,
                                         height: 70.0,
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           minHeight: 70.0,
                                           maxWidth: 770.0,
                                         ),
@@ -330,16 +336,16 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController,
+                                            controller:textController,
                                             focusNode:
-                                                _model.textFieldFocusNode,
+                                               textFieldFocusNode,
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
                                               '_model.textController',
-                                              Duration(milliseconds: 2000),
+                                              const Duration(milliseconds: 2000),
                                               () => setState(() {}),
                                             ),
                                             obscureText: false,
@@ -401,22 +407,22 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.search,
                                                 size: 20.0,
                                               ),
-                                              suffixIcon: _model.textController!
+                                              suffixIcon:textController!
                                                       .text.isNotEmpty
                                                   ? InkWell(
                                                       onTap: () async {
-                                                        _model.textController
+                                                       textController
                                                             ?.clear();
                                                         setState(() {});
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.clear,
                                                         size: 22,
                                                       ),
@@ -428,9 +434,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textControllerValidator
-                                                .asValidator(context),
+                                            validator: textControllerValidator.asValidator(context),
                                           ),
                                         ),
                                       ),
@@ -442,7 +446,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                     borderRadius: 5.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    fillColor: Color(0x4C15161E),
+                                    fillColor: const Color(0x4C15161E),
                                     icon: Icon(
                                       Icons.filter_list,
                                       color: FlutterFlowTheme.of(context)
@@ -470,7 +474,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                               children: [
                                 // FirstName container
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Container(
                                     width: double.infinity,
@@ -482,21 +486,21 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                           blurRadius: 0.0,
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
-                                          offset: Offset(0.0, 1.0),
+                                          offset: const Offset(0.0, 1.0),
                                         )
                                       ],
                                       borderRadius: BorderRadius.circular(0.0),
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           25.0, 5.0, 25.0, 5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 15.0, 0.0),
                                             child: Theme(
                                               data: ThemeData(
@@ -518,11 +522,11 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                                         .secondaryText,
                                               ),
                                               child: Checkbox(
-                                                value: _model.checkboxValue ??=
+                                                value:checkboxValue ??=
                                                     true,
                                                 onChanged: (newValue) async {
                                                   setState(() =>
-                                                      _model.checkboxValue =
+                                                     checkboxValue =
                                                           newValue!);
                                                 },
                                                 activeColor:
@@ -536,7 +540,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 15.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
@@ -547,7 +551,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                                   'eVO}3vny%htT}-%3S\$M|IVSz?GNLs8NGNIxuxFNFWWo#w[azS6xZEM',
                                                 ),
                                                 image:
-                                                    CachedNetworkImageProvider(
+                                                    const CachedNetworkImageProvider(
                                                   'https://picsum.photos/seed/418/600',
                                                 ),
                                                 width: 67.0,
@@ -566,7 +570,7 @@ class _ModalAssignTrainingWidgetState extends State<ModalAssignTrainingWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: SelectionArea(
                                                 child: AutoSizeText(

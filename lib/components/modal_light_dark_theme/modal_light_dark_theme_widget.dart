@@ -10,9 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'modal_light_dark_theme_model.dart';
-export 'modal_light_dark_theme_model.dart';
+
 
 class ModalLightDarkThemeWidget extends StatefulWidget {
   const ModalLightDarkThemeWidget({Key? key}) : super(key: key);
@@ -24,7 +22,7 @@ class ModalLightDarkThemeWidget extends StatefulWidget {
 
 class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
     with TickerProviderStateMixin {
-  late ModalLightDarkThemeModel _model;
+
 
   final animationsMap = {
     'iconOnPageLoadAnimation1': AnimationInfo(
@@ -35,8 +33,8 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
           curve: Curves.bounceOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -55,8 +53,8 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
           curve: Curves.bounceOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -72,21 +70,17 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
-  }
+    }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ModalLightDarkThemeModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
     super.dispose();
   }
 
@@ -110,15 +104,15 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 700.0,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 12.0,
                         color: Color(0x33000000),
@@ -129,7 +123,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -137,7 +131,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 4.0, 12.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -156,7 +150,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                             .headlineLarge,
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -170,7 +164,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -192,7 +186,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 16.0),
                             child: Wrap(
                               spacing: 16.0,
@@ -209,7 +203,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                   child: Stack(
                                     children: [
                                       AnimatedContainer(
-                                        duration: Duration(milliseconds: 150),
+                                        duration: const Duration(milliseconds: 150),
                                         curve: Curves.easeInOut,
                                         decoration: BoxDecoration(
                                           color: Theme.of(context).brightness ==
@@ -233,7 +227,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 4.0, 4.0, 4.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -248,12 +242,12 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                               width: 310.0,
                                               height: 230.0,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFF1B1D27),
+                                                color: const Color(0xFF1B1D27),
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 12.0, 8.0, 0.0),
                                                 child: Column(
@@ -265,7 +259,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -280,7 +274,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -314,7 +308,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                               Brightness.dark)
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       1.00,
                                                                       -1.00),
                                                               child: Icon(
@@ -334,7 +328,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                     Container(
                                                       width: 110.0,
                                                       height: 160.0,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         color:
                                                             Color(0xFF2A3137),
                                                         borderRadius:
@@ -355,7 +349,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     12.0,
@@ -370,7 +364,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -390,7 +384,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                                         20.0,
                                                                     decoration:
                                                                         BoxDecoration(
-                                                                      color: Color(
+                                                                      color: const Color(
                                                                           0xD81D2429),
                                                                       borderRadius:
                                                                           BorderRadius.circular(
@@ -415,7 +409,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
@@ -427,7 +421,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                                 height: 44.0,
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xD81D2429),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -438,7 +432,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
@@ -450,7 +444,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                                 height: 44.0,
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xD81D2429),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -478,7 +472,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                   child: Stack(
                                     children: [
                                       AnimatedContainer(
-                                        duration: Duration(milliseconds: 150),
+                                        duration: const Duration(milliseconds: 150),
                                         curve: Curves.easeInOut,
                                         decoration: BoxDecoration(
                                           color: Theme.of(context).brightness ==
@@ -502,7 +496,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 4.0, 4.0, 4.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -524,7 +518,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 12.0, 8.0, 0.0),
                                                 child: Column(
@@ -536,7 +530,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -551,7 +545,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -570,7 +564,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                                     fontFamily:
                                                                         FlutterFlowTheme.of(context)
                                                                             .titleLargeFamily,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xFF1B1D27),
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
@@ -584,7 +578,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                               Brightness.light)
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       1.00,
                                                                       -1.00),
                                                               child: Icon(
@@ -604,7 +598,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                     Container(
                                                       width: 110.0,
                                                       height: 160.0,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         color:
                                                             Color(0xFFDBE2E7),
                                                         borderRadius:
@@ -625,7 +619,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     12.0,
@@ -640,7 +634,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -686,7 +680,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
@@ -710,7 +704,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
@@ -750,14 +744,14 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
@@ -767,10 +761,10 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                       'jbde4nx9' /* Cancel */,
                                     ),
                                     options: FFButtonOptions(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 24.0, 24.0, 24.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -794,9 +788,9 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                     '5rexwjlj' /* Save & Close */,
                                   ),
                                   options: FFButtonOptions(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 24.0, 24.0, 24.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -812,7 +806,7 @@ class _ModalLightDarkThemeWidgetState extends State<ModalLightDarkThemeWidget>
                                                       .titleSmallFamily),
                                         ),
                                     elevation: 1.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),

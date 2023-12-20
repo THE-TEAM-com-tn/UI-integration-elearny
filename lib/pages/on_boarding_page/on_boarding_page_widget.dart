@@ -5,19 +5,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
+import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'on_boarding_page_model.dart';
-export 'on_boarding_page_model.dart';
+
+
 
 class OnBoardingPageWidget extends StatefulWidget {
   const OnBoardingPageWidget({Key? key}) : super(key: key);
@@ -26,10 +22,18 @@ class OnBoardingPageWidget extends StatefulWidget {
   _OnBoardingPageWidgetState createState() => _OnBoardingPageWidgetState();
 }
 
-class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
-    with TickerProviderStateMixin {
-  late OnBoardingPageModel _model;
+class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget> with TickerProviderStateMixin {
 
+  final unfocusNode = FocusNode(); 
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+      pageViewController!.hasClients &&
+      pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
+  
+  
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
@@ -47,8 +51,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(1.4, 1.4),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(1.4, 1.4),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -66,15 +70,15 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 50.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.3, 0.3),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.3, 0.3),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -92,8 +96,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 70.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 70.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -111,8 +115,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 90.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 90.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -130,15 +134,15 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 100.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 100.0),
+          end: const Offset(0.0, 0.0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -156,8 +160,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.4, 0.4),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.4, 0.4),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -175,8 +179,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.4, 0.4),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.4, 0.4),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -194,8 +198,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.4, 0.4),
-          end: Offset(1.0, 1.0),
+          begin: const Offset(0.4, 0.4),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -204,7 +208,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => OnBoardingPageModel());
+   // _model = createModel(context, () => OnBoardingPageModel());
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -218,8 +222,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
 
   @override
   void dispose() {
-    _model.dispose();
-
+   // dispose();
+    unfocusNode.dispose();
     super.dispose();
   }
 
@@ -235,8 +239,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
     }
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+      onTap: () => unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
@@ -255,15 +259,15 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                         child: PageView(
-                          controller: _model.pageViewController ??=
+                          controller: pageViewController ??=
                               PageController(initialPage: 0),
                           scrollDirection: Axis.horizontal,
                           children: [
                             // PageView 1 : Column 1
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 22.0, 12.0, 12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -272,7 +276,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 22.0, 0.0, 12.0),
                                       child: ClipRRect(
                                         borderRadius:
@@ -285,13 +289,13 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                           width: 900.0,
                                           height: 290.0,
                                           fit: BoxFit.contain,
-                                          alignment: Alignment(0.00, 0.00),
+                                          alignment: const Alignment(0.00, 0.00),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -312,7 +316,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 4.0, 12.0, 0.0),
                                     child: AutoSizeText(
                                       FFLocalizations.of(context).getText(
@@ -339,7 +343,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
 
                             // PageView 2 : Column 2
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 22.0, 12.0, 12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -348,7 +352,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: ClipRRect(
                                         borderRadius:
@@ -361,13 +365,13 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                           width: 900.0,
                                           height: 300.0,
                                           fit: BoxFit.contain,
-                                          alignment: Alignment(0.00, 0.00),
+                                          alignment: const Alignment(0.00, 0.00),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -388,7 +392,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 4.0, 12.0, 0.0),
                                     child: AutoSizeText(
                                       FFLocalizations.of(context).getText(
@@ -413,7 +417,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 22.0, 12.0, 12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -422,7 +426,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 22.0, 0.0, 12.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -444,7 +448,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                       : 'assets/images/onboarding_pic3.png',
                                                   fit: BoxFit.contain,
                                                   alignment:
-                                                      Alignment(0.00, 0.00),
+                                                      const Alignment(0.00, 0.00),
                                                 ),
                                                 allowRotation: false,
                                                 tag: 'imageTag3',
@@ -469,7 +473,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                   0.8,
                                               height: 300.0,
                                               fit: BoxFit.contain,
-                                              alignment: Alignment(0.00, 0.00),
+                                              alignment: const Alignment(0.00, 0.00),
                                             ),
                                           ),
                                         ),
@@ -477,7 +481,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -498,7 +502,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 4.0, 12.0, 0.0),
                                     child: AutoSizeText(
                                       FFLocalizations.of(context).getText(
@@ -533,13 +537,13 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 24.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                await _model.pageViewController
+                                                await pageViewController
                                                     ?.nextPage(
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 300),
                                                   curve: Curves.ease,
                                                 );
@@ -551,11 +555,11 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                               options: FFButtonOptions(
                                                 width: 300.0,
                                                 height: 44.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -580,7 +584,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       .titleSmallFamily),
                                                         ),
                                                 elevation: 2.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -613,7 +617,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                     blurRadius: 4.0,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    offset: Offset(0.0, 2.0),
+                                    offset: const Offset(0.0, 2.0),
                                   )
                                 ],
                               ),
@@ -626,7 +630,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                   child: Container(
                                     width: 100.0,
                                     height: 100.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0x97FFFFFF),
                                     ),
                                     child: Column(
@@ -636,7 +640,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 44.0),
                                           child: Image.asset(
                                             Theme.of(context).brightness ==
@@ -670,7 +674,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                             'textOnPageLoadAnimation1']!),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 12.0, 24.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -698,7 +702,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 44.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
@@ -711,9 +715,9 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                             options: FFButtonOptions(
                                               width: 200.0,
                                               height: 50.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -735,7 +739,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     .titleSmallFamily),
                                                       ),
                                               elevation: 2.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -756,19 +760,19 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.00, 1.00),
+                        alignment: const AlignmentDirectional(0.00, 1.00),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
-                            controller: _model.pageViewController ??=
+                            controller: pageViewController ??=
                                 PageController(initialPage: 0),
                             count: 4,
                             axisDirection: Axis.horizontal,
                             onDotClicked: (i) async {
-                              await _model.pageViewController!.animateToPage(
+                              await pageViewController!.animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                             },
@@ -795,7 +799,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    alignment: const AlignmentDirectional(-1.00, 0.00),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
@@ -807,8 +811,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         size: 30.0,
                       ),
                       onPressed: () async {
-                        await _model.pageViewController?.previousPage(
-                          duration: Duration(milliseconds: 300),
+                        await pageViewController?.previousPage(
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.ease,
                         );
                       },
@@ -816,7 +820,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         animationsMap['iconButtonOnPageLoadAnimation1']!),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1.00, 0.00),
+                    alignment: const AlignmentDirectional(1.00, 0.00),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
@@ -828,8 +832,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         size: 30.0,
                       ),
                       onPressed: () async {
-                        await _model.pageViewController?.nextPage(
-                          duration: Duration(milliseconds: 300),
+                        await pageViewController?.nextPage(
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.ease,
                         );
                       },
@@ -837,7 +841,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         animationsMap['iconButtonOnPageLoadAnimation2']!),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1.00, 0.00),
+                    alignment: const AlignmentDirectional(1.00, 0.00),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
@@ -849,9 +853,9 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                         size: 30.0,
                       ),
                       onPressed: () async {
-                        await _model.pageViewController?.animateToPage(
+                        await pageViewController?.animateToPage(
                           3,
-                          duration: Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.ease,
                         );
                       },

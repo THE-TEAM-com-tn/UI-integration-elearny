@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,12 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'dropdown_user_account_model.dart';
-export 'dropdown_user_account_model.dart';
+//import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 class DropdownUserAccountWidget extends StatefulWidget {
   const DropdownUserAccountWidget({Key? key}) : super(key: key);
@@ -23,7 +23,16 @@ class DropdownUserAccountWidget extends StatefulWidget {
 
 class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
     with TickerProviderStateMixin {
-  late DropdownUserAccountModel _model;
+
+
+  // State field(s) for MouseRegions widgets.
+  bool mouseRegionHovered1 = false;
+  bool mouseRegionHovered2 = false;
+  bool mouseRegionHovered3 = false;
+  bool mouseRegionHovered4 = false;
+
+
+
 
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
@@ -41,15 +50,15 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(0, 0.873),
-          end: Offset(0, 0),
+          begin: const Offset(0, 0.873),
+          end: const Offset(0, 0),
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(40.0, 0.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(40.0, 0.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -61,8 +70,8 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 0.0),
-          end: Offset(115.0, 0.0),
+          begin: const Offset(0.0, 0.0),
+          end: const Offset(115.0, 0.0),
         ),
       ],
     ),
@@ -71,13 +80,12 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
+  // onUpdate();
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DropdownUserAccountModel());
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -91,7 +99,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
 
   @override
   void dispose() {
-    _model.maybeDispose();
+    //maybeDispose();
 
     super.dispose();
   }
@@ -102,13 +110,13 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
           child: Container(
             width: 320.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
-                BoxShadow(
+              boxShadow: const [
+                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
                   offset: Offset(0.0, 2.0),
@@ -121,20 +129,20 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
               ),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -145,7 +153,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -167,12 +175,12 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Container(
                             width: 44.0,
@@ -186,7 +194,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   2.0, 2.0, 2.0, 2.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -201,7 +209,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               4.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -225,10 +233,10 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                     style:
                                         FlutterFlowTheme.of(context).bodyLarge,
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
+                                ].divide(const SizedBox(width: 4.0)),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
                                 child: AutoSizeText(
                                   FFLocalizations.of(context).getText(
@@ -263,7 +271,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
                     child: MouseRegion(
                       opaque: false,
                       cursor: MouseCursor.defer ?? MouseCursor.defer,
@@ -276,24 +284,24 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                           context.pushNamed('ProfilePage');
                         },
                         child: AnimatedContainer(
-                          duration: Duration(milliseconds: 150),
+                          duration: const Duration(milliseconds: 150),
                           curve: Curves.easeInOut,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: _model.mouseRegionHovered1!
+                            color: mouseRegionHovered1!
                                 ? FlutterFlowTheme.of(context).primaryBackground
                                 : FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.account_circle_outlined,
@@ -304,7 +312,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -321,16 +329,16 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         ),
                       ),
                       onEnter: ((event) async {
-                        setState(() => _model.mouseRegionHovered1 = true);
+                        setState(() => mouseRegionHovered1 = true);
                       }),
                       onExit: ((event) async {
-                        setState(() => _model.mouseRegionHovered1 = false);
+                        setState(() => mouseRegionHovered1 = false);
                       }),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
                     child: MouseRegion(
                       opaque: false,
                       cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
@@ -341,24 +349,24 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         highlightColor: Colors.transparent,
                         onTap: () async {},
                         child: AnimatedContainer(
-                          duration: Duration(milliseconds: 150),
+                          duration: const Duration(milliseconds: 150),
                           curve: Curves.easeInOut,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: _model.mouseRegionHovered2!
+                            color: mouseRegionHovered2!
                                 ? FlutterFlowTheme.of(context).primaryBackground
                                 : FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.settings_outlined,
@@ -369,7 +377,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -386,16 +394,16 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         ),
                       ),
                       onEnter: ((event) async {
-                        setState(() => _model.mouseRegionHovered2 = true);
+                        setState(() => mouseRegionHovered2 = true);
                       }),
                       onExit: ((event) async {
-                        setState(() => _model.mouseRegionHovered2 = false);
+                        setState(() => mouseRegionHovered2 = false);
                       }),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 4.0),
                     child: MouseRegion(
                       opaque: false,
                       cursor: SystemMouseCursors.click ?? MouseCursor.defer,
@@ -406,24 +414,24 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         highlightColor: Colors.transparent,
                         onTap: () async {},
                         child: AnimatedContainer(
-                          duration: Duration(milliseconds: 150),
+                          duration: const Duration(milliseconds: 150),
                           curve: Curves.easeInOut,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: _model.mouseRegionHovered3!
+                            color: mouseRegionHovered3!
                                 ? FlutterFlowTheme.of(context).primaryBackground
                                 : FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.graduationCap,
@@ -434,7 +442,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -451,18 +459,18 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         ),
                       ),
                       onEnter: ((event) async {
-                        setState(() => _model.mouseRegionHovered3 = true);
+                        setState(() => mouseRegionHovered3 = true);
                       }),
                       onExit: ((event) async {
-                        setState(() => _model.mouseRegionHovered3 = false);
+                        setState(() => mouseRegionHovered3 = false);
                       }),
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.00, 0.00),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -471,7 +479,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               4.0, 4.0, 4.0, 4.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -533,7 +541,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -616,7 +624,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -667,29 +675,29 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                     child: MouseRegion(
                       opaque: false,
                       cursor: SystemMouseCursors.click ?? MouseCursor.defer,
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 150),
+                        duration: const Duration(milliseconds: 150),
                         curve: Curves.easeInOut,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: _model.mouseRegionHovered4!
+                          color: mouseRegionHovered4!
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Icon(
                                   Icons.login_rounded,
@@ -700,7 +708,7 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
@@ -716,10 +724,10 @@ class _DropdownUserAccountWidgetState extends State<DropdownUserAccountWidget>
                         ),
                       ),
                       onEnter: ((event) async {
-                        setState(() => _model.mouseRegionHovered4 = true);
+                        setState(() => mouseRegionHovered4 = true);
                       }),
                       onExit: ((event) async {
-                        setState(() => _model.mouseRegionHovered4 = false);
+                        setState(() => mouseRegionHovered4 = false);
                       }),
                     ),
                   ),

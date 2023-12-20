@@ -3,11 +3,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'super_admin_home_page_model.dart';
-export 'super_admin_home_page_model.dart';
+
+
 
 class SuperAdminHomePageWidget extends StatefulWidget {
   const SuperAdminHomePageWidget({Key? key}) : super(key: key);
@@ -18,21 +16,18 @@ class SuperAdminHomePageWidget extends StatefulWidget {
 }
 
 class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
-  late SuperAdminHomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SuperAdminHomePageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
 
     super.dispose();
   }
@@ -55,7 +50,7 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               'zjs1lffq' /* Super Admin Home Page */,
@@ -73,19 +68,19 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
         elevation: 0.0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0.00, -1.00),
+        alignment: const AlignmentDirectional(0.00, -1.00),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570.0,
           ),
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'yqckpxhu' /* Welcome : Super Admin */,
@@ -100,10 +95,10 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'y7c9ha76' /* welcome to Our Application  */,
@@ -114,9 +109,9 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(99.0),
                     child: Image.network(
@@ -129,7 +124,7 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '0lo97by7' /* user : email@gmail.com */,
@@ -146,9 +141,9 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed('Admin_users_list');
@@ -160,13 +155,13 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -175,9 +170,9 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed('ProfilePage');
@@ -189,13 +184,13 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -204,9 +199,9 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.safePop();
@@ -218,13 +213,13 @@ class _SuperAdminHomePageWidgetState extends State<SuperAdminHomePageWidget> {
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

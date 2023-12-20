@@ -1,17 +1,13 @@
 // ignore_for_file: sort_child_properties_last
 
+// CONTENT MANAGER DROPDOWN MANAGE USER WIDGET
 import '/components/modal_assign_training/modal_assign_training_widget.dart';
 import '/components/modal_edit_user_info/modal_edit_user_info_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'c_manager_drop_down_manage_user_model.dart';
-export 'c_manager_drop_down_manage_user_model.dart';
 
 class CManagerDropDownManageUserWidget extends StatefulWidget {
   const CManagerDropDownManageUserWidget({Key? key}) : super(key: key);
@@ -21,37 +17,27 @@ class CManagerDropDownManageUserWidget extends StatefulWidget {
       _CManagerDropDownManageUserWidgetState();
 }
 
-class _CManagerDropDownManageUserWidgetState
-    extends State<CManagerDropDownManageUserWidget> {
-  //late CManagerDropDownManageUserModel _model;
+class _CManagerDropDownManageUserWidgetState extends State<CManagerDropDownManageUserWidget> {
 
-
-  // State field(s) for MouseRegion widget.
   bool mouseRegionHovered1 = false;
-  // State field(s) for MouseRegion widget.
   bool mouseRegionHovered2 = false;
-  // State field(s) for MouseRegion widget.
   bool mouseRegionHovered3 = false;
-
 
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    //_model.onUpdate();
+
   }
 
   @override
   void initState() {
     super.initState();
-   // _model = createModel(context, () => CManagerDropDownManageUserModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    //_model.maybeDispose();
-
     super.dispose();
   }
 

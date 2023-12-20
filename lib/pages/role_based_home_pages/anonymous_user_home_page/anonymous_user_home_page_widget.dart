@@ -3,11 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'anonymous_user_home_page_model.dart';
-export 'anonymous_user_home_page_model.dart';
 
 class AnonymousUserHomePageWidget extends StatefulWidget {
   const AnonymousUserHomePageWidget({Key? key}) : super(key: key);
@@ -17,23 +13,19 @@ class AnonymousUserHomePageWidget extends StatefulWidget {
       _AnonymousUserHomePageWidgetState();
 }
 
-class _AnonymousUserHomePageWidgetState
-    extends State<AnonymousUserHomePageWidget> {
-  late AnonymousUserHomePageModel _model;
+class _AnonymousUserHomePageWidgetState extends State<AnonymousUserHomePageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AnonymousUserHomePageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
 
     super.dispose();
   }
@@ -56,7 +48,7 @@ class _AnonymousUserHomePageWidgetState
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               'z75r4np0' /* Anonymous / Guest User  Home P... */,
@@ -74,19 +66,19 @@ class _AnonymousUserHomePageWidgetState
         elevation: 0.0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0.00, -1.00),
+        alignment: const AlignmentDirectional(0.00, -1.00),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570.0,
           ),
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'k7bef67a' /* Welcome : Anonymous User */,
@@ -101,10 +93,10 @@ class _AnonymousUserHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'u6we6y1s' /* welcome to Our Application  */,
@@ -115,9 +107,9 @@ class _AnonymousUserHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(99.0),
                     child: Image.network(
@@ -130,7 +122,7 @@ class _AnonymousUserHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'y1dcu8r5' /* user : email@gmail.com */,
@@ -147,9 +139,9 @@ class _AnonymousUserHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed('ProfilePage');
@@ -161,13 +153,13 @@ class _AnonymousUserHomePageWidgetState
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -176,9 +168,9 @@ class _AnonymousUserHomePageWidgetState
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.safePop();
@@ -190,13 +182,13 @@ class _AnonymousUserHomePageWidgetState
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

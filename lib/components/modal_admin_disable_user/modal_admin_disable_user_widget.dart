@@ -11,9 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'modal_admin_disable_user_model.dart';
-export 'modal_admin_disable_user_model.dart';
+
+
 
 class ModalAdminDisableUserWidget extends StatefulWidget {
   const ModalAdminDisableUserWidget({Key? key}) : super(key: key);
@@ -25,7 +24,13 @@ class ModalAdminDisableUserWidget extends StatefulWidget {
 
 class _ModalAdminDisableUserWidgetState
     extends State<ModalAdminDisableUserWidget> with TickerProviderStateMixin {
-  late ModalAdminDisableUserModel _model;
+
+
+    FocusNode? textFieldFocusNode;
+    TextEditingController? textController;
+    String? Function(BuildContext, String?)? textControllerValidator;
+  
+
 
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
@@ -36,8 +41,8 @@ class _ModalAdminDisableUserWidgetState
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 400.ms,
-          begin: Offset(0.0, 100.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 100.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -46,16 +51,15 @@ class _ModalAdminDisableUserWidgetState
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
+   // onUpdate();
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ModalAdminDisableUserModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    textController ??= TextEditingController();
+    textFieldFocusNode ??= FocusNode();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -69,8 +73,9 @@ class _ModalAdminDisableUserWidgetState
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
+    //maybeDispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
     super.dispose();
   }
 
@@ -94,19 +99,19 @@ class _ModalAdminDisableUserWidgetState
               Container(
                 width: 100.0,
                 height: 100.0,
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
               ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 530.0,
                 ),
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -132,15 +137,15 @@ class _ModalAdminDisableUserWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 730.0,
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 12.0,
                       color: Color(0x1E000000),
@@ -150,7 +155,7 @@ class _ModalAdminDisableUserWidgetState
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -164,9 +169,9 @@ class _ModalAdminDisableUserWidgetState
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 8.0, 8.0),
                             child: AutoSizeText(
                               FFLocalizations.of(context).getText(
@@ -191,7 +196,7 @@ class _ModalAdminDisableUserWidgetState
 
                         // userEmail container
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 1.0),
                           child: Container(
                             width: double.infinity,
@@ -202,14 +207,14 @@ class _ModalAdminDisableUserWidgetState
                                 BoxShadow(
                                   blurRadius: 0.0,
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  offset: Offset(0.0, 1.0),
+                                  offset: const Offset(0.0, 1.0),
                                 )
                               ],
                               borderRadius: BorderRadius.circular(0.0),
                               shape: BoxShape.rectangle,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 5.0, 30.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -217,14 +222,14 @@ class _ModalAdminDisableUserWidgetState
                                 children: [
                                   Flexible(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 8.0),
                                       child: AnimatedContainer(
-                                        duration: Duration(milliseconds: 100),
+                                        duration: const Duration(milliseconds: 100),
                                         curve: Curves.easeInOut,
                                         width: 450.0,
                                         height: 70.0,
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           minHeight: 70.0,
                                           maxWidth: 770.0,
                                         ),
@@ -241,16 +246,16 @@ class _ModalAdminDisableUserWidgetState
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController,
+                                            controller: textController,
                                             focusNode:
-                                                _model.textFieldFocusNode,
+                                                textFieldFocusNode,
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
-                                              '_model.textController',
-                                              Duration(milliseconds: 2000),
+                                              'textController',
+                                              const Duration(milliseconds: 2000),
                                               () => setState(() {}),
                                             ),
                                             obscureText: false,
@@ -319,7 +324,7 @@ class _ModalAdminDisableUserWidgetState
                                                     BorderRadius.circular(12.0),
                                               ),
                                               errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -328,7 +333,7 @@ class _ModalAdminDisableUserWidgetState
                                               ),
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -336,9 +341,9 @@ class _ModalAdminDisableUserWidgetState
                                                     BorderRadius.circular(12.0),
                                               ),
                                               filled: true,
-                                              fillColor: Color(0x25C4454D),
+                                              fillColor: const Color(0x25C4454D),
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
                                               prefixIcon: Icon(
@@ -348,29 +353,27 @@ class _ModalAdminDisableUserWidgetState
                                                         .error,
                                                 size: 20.0,
                                               ),
-                                              suffixIcon: _model.textController!
+                                              suffixIcon: textController!
                                                       .text.isNotEmpty
                                                   ? InkWell(
                                                       onTap: () async {
-                                                        _model.textController
+                                                        textController
                                                             ?.clear();
                                                         setState(() {});
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.clear,
                                                         size: 22,
                                                       ),
                                                     )
                                                   : null,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                            cursorColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            validator: _model
-                                                .textControllerValidator
-                                                .asValidator(context),
+
+                                            style: FlutterFlowTheme.of(context).bodyMedium,
+                                            cursorColor: FlutterFlowTheme.of(context).primary,
+                                            validator: textControllerValidator.asValidator(context),
+
+
                                           ),
                                         ),
                                       ),
@@ -382,7 +385,7 @@ class _ModalAdminDisableUserWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 16.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -398,9 +401,9 @@ class _ModalAdminDisableUserWidgetState
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).accent1,
                                   textStyle:
@@ -432,11 +435,11 @@ class _ModalAdminDisableUserWidgetState
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0x4DF5898B),
+                                  color: const Color(0x4DF5898B),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -466,15 +469,14 @@ class _ModalAdminDisableUserWidgetState
                                   hoverElevation: 3.0,
                                 ),
                               ),
-                            ].divide(SizedBox(width: 50.0)),
+                            ].divide(const SizedBox(width: 50.0)),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ).animateOnPageLoad(
-                  animationsMap['containerOnPageLoadAnimation']!),
+              ).animateOnPageLoad( animationsMap['containerOnPageLoadAnimation']!),
             ),
           ],
         ),

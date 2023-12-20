@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'change_password_model.dart';
-export 'change_password_model.dart';
+
 
 class ChangePasswordWidget extends StatefulWidget {
   const ChangePasswordWidget({Key? key}) : super(key: key);
@@ -18,31 +16,53 @@ class ChangePasswordWidget extends StatefulWidget {
 }
 
 class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
-  late ChangePasswordModel _model;
-
+  
+  // State field(s) for emailAddress widget.
+  FocusNode? emailAddressFocusNode1;
+  FocusNode? emailAddressFocusNode2;
+  FocusNode? emailAddressFocusNode3;
+  
+  
+  TextEditingController? emailAddressController1;
+  TextEditingController? emailAddressController2;
+  TextEditingController? emailAddressController3;
+  
+  late bool emailAddressVisibility1;
+  late bool emailAddressVisibility2;
+  late bool emailAddressVisibility3;
+  
+  String? Function(BuildContext, String?)? emailAddressController1Validator;
+  String? Function(BuildContext, String?)? emailAddressController2Validator;
+  String? Function(BuildContext, String?)? emailAddressController3Validator;
+  
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ChangePasswordModel());
 
-    _model.emailAddressController1 ??= TextEditingController();
-    _model.emailAddressFocusNode1 ??= FocusNode();
-
-    _model.emailAddressController2 ??= TextEditingController();
-    _model.emailAddressFocusNode2 ??= FocusNode();
-
-    _model.emailAddressController3 ??= TextEditingController();
-    _model.emailAddressFocusNode3 ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    emailAddressFocusNode1 ??= FocusNode();
+    emailAddressFocusNode2 ??= FocusNode();
+    emailAddressFocusNode3 ??= FocusNode();
+    
+    emailAddressVisibility1 = false;
+    emailAddressVisibility2 = false;
+    emailAddressVisibility3 = false;
+    
+   emailAddressController1 ??= TextEditingController();
+   emailAddressController2 ??= TextEditingController();
+   emailAddressController3 ??= TextEditingController();
+   WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
+    emailAddressFocusNode1?.dispose();
+    emailAddressController1?.dispose();
+    emailAddressFocusNode2?.dispose();
+    emailAddressController2?.dispose();
+    emailAddressFocusNode3?.dispose();
+    emailAddressController3?.dispose();
     super.dispose();
   }
 
@@ -78,7 +98,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
           },
         ),
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               'r34fsbtc' /* Back */,
@@ -96,19 +116,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         elevation: 0.0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0.00, -1.00),
+        alignment: const AlignmentDirectional(0.00, -1.00),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570.0,
           ),
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'g3o9k8tb' /* Change Password */,
@@ -123,9 +143,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
@@ -138,10 +158,10 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'fliy0q8q' /* Update your password for enhan... */,
@@ -152,13 +172,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Container(
                   width: double.infinity,
                   child: TextFormField(
-                    controller: _model.emailAddressController1,
-                    focusNode: _model.emailAddressFocusNode1,
-                    obscureText: !_model.emailAddressVisibility1,
+                    controller:emailAddressController1,
+                    focusNode:emailAddressFocusNode1,
+                    obscureText: !emailAddressVisibility1,
                     decoration: InputDecoration(
                       labelText: FFLocalizations.of(context).getText(
                         'ucckjv9k' /* Your old password */,
@@ -199,19 +219,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                       suffixIcon: InkWell(
                         onTap: () => setState(
-                          () => _model.emailAddressVisibility1 =
-                              !_model.emailAddressVisibility1,
+                          () =>emailAddressVisibility1 =
+                              !emailAddressVisibility1,
                         ),
                         focusNode: FocusNode(skipTraversal: true),
                         child: Icon(
-                          _model.emailAddressVisibility1
+                         emailAddressVisibility1
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,
-                          color: Color(0xFF757575),
+                          color: const Color(0xFF757575),
                           size: 22.0,
                         ),
                       ),
@@ -219,19 +239,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: FlutterFlowTheme.of(context).primary,
-                    validator: _model.emailAddressController1Validator
+                    validator:emailAddressController1Validator
                         .asValidator(context),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Container(
                   width: double.infinity,
                   child: TextFormField(
-                    controller: _model.emailAddressController2,
-                    focusNode: _model.emailAddressFocusNode2,
-                    obscureText: !_model.emailAddressVisibility2,
+                    controller:emailAddressController2,
+                    focusNode:emailAddressFocusNode2,
+                    obscureText: !emailAddressVisibility2,
                     decoration: InputDecoration(
                       labelText: FFLocalizations.of(context).getText(
                         'w61rjped' /* Your new password */,
@@ -272,19 +292,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                       suffixIcon: InkWell(
                         onTap: () => setState(
-                          () => _model.emailAddressVisibility2 =
-                              !_model.emailAddressVisibility2,
+                          () =>emailAddressVisibility2 =
+                              !emailAddressVisibility2,
                         ),
                         focusNode: FocusNode(skipTraversal: true),
                         child: Icon(
-                          _model.emailAddressVisibility2
+                         emailAddressVisibility2
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,
-                          color: Color(0xFF757575),
+                          color: const Color(0xFF757575),
                           size: 22.0,
                         ),
                       ),
@@ -292,19 +312,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: FlutterFlowTheme.of(context).primary,
-                    validator: _model.emailAddressController2Validator
+                    validator:emailAddressController2Validator
                         .asValidator(context),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Container(
                   width: double.infinity,
                   child: TextFormField(
-                    controller: _model.emailAddressController3,
-                    focusNode: _model.emailAddressFocusNode3,
-                    obscureText: !_model.emailAddressVisibility3,
+                    controller:emailAddressController3,
+                    focusNode:emailAddressFocusNode3,
+                    obscureText: !emailAddressVisibility3,
                     decoration: InputDecoration(
                       labelText: FFLocalizations.of(context).getText(
                         'xl49orxk' /* Confirm new password */,
@@ -345,19 +365,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding: EdgeInsetsDirectional.fromSTEB(
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                       suffixIcon: InkWell(
                         onTap: () => setState(
-                          () => _model.emailAddressVisibility3 =
-                              !_model.emailAddressVisibility3,
+                          () =>emailAddressVisibility3 =
+                              !emailAddressVisibility3,
                         ),
                         focusNode: FocusNode(skipTraversal: true),
                         child: Icon(
-                          _model.emailAddressVisibility3
+                         emailAddressVisibility3
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,
-                          color: Color(0xFF757575),
+                          color: const Color(0xFF757575),
                           size: 22.0,
                         ),
                       ),
@@ -365,15 +385,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: FlutterFlowTheme.of(context).primary,
-                    validator: _model.emailAddressController3Validator
+                    validator:emailAddressController3Validator
                         .asValidator(context),
                   ),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 10.0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button-Login pressed ...');
@@ -385,13 +405,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       width: 270.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context).titleSmall,
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

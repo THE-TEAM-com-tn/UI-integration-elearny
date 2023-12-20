@@ -12,9 +12,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'modal_edit_user_info_model.dart';
-export 'modal_edit_user_info_model.dart';
 
 class ModalEditUserInfoWidget extends StatefulWidget {
   const ModalEditUserInfoWidget({Key? key}) : super(key: key);
@@ -26,8 +23,35 @@ class ModalEditUserInfoWidget extends StatefulWidget {
 
 class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
     with TickerProviderStateMixin {
-  late ModalEditUserInfoModel _model;
+ 
 
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode1;
+  FocusNode? textFieldFocusNode2;
+  FocusNode? textFieldFocusNode3;
+  FocusNode? textFieldFocusNode4;
+  FocusNode? textFieldFocusNode5;
+  FocusNode? textFieldFocusNode6;
+  
+  TextEditingController? textController1;
+  TextEditingController? textController2;
+  TextEditingController? textController3;
+  TextEditingController? textController4;
+  TextEditingController? textController5;
+  TextEditingController? textController6;
+  
+  String? Function(BuildContext, String?)? textController1Validator;
+  String? Function(BuildContext, String?)? textController2Validator;
+  String? Function(BuildContext, String?)? textController3Validator;
+  String? Function(BuildContext, String?)? textController4Validator;
+  String? Function(BuildContext, String?)? textController5Validator;
+  String? Function(BuildContext, String?)? textController6Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
+  
+  
+  
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -37,8 +61,8 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 400.ms,
-          begin: Offset(0.0, 100.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 100.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -47,31 +71,26 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
+    
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ModalEditUserInfoModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    textFieldFocusNode1 ??= FocusNode();
+    textFieldFocusNode2 ??= FocusNode();
+    textFieldFocusNode3 ??= FocusNode();
+    textFieldFocusNode4 ??= FocusNode();
+    textFieldFocusNode5 ??= FocusNode();
+    textFieldFocusNode6 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
-
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
-
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
-
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
+   textController1 ??= TextEditingController();
+   textController2 ??= TextEditingController();
+   textController3 ??= TextEditingController();
+   textController4 ??= TextEditingController();
+   textController5 ??= TextEditingController();
+   textController6 ??= TextEditingController();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -85,7 +104,20 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
   @override
   void dispose() {
-    _model.maybeDispose();
+  // maybeDispose();
+    textFieldFocusNode1?.dispose();
+    textFieldFocusNode2?.dispose();
+    textFieldFocusNode3?.dispose();
+    textFieldFocusNode4?.dispose();
+    textFieldFocusNode5?.dispose();
+    textFieldFocusNode6?.dispose();
+
+    textController1?.dispose();
+    textController2?.dispose();
+    textController3?.dispose();
+    textController4?.dispose();
+    textController5?.dispose();
+    textController6?.dispose();
 
     super.dispose();
   }
@@ -110,19 +142,19 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
               Container(
                 width: 100.0,
                 height: 100.0,
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
               ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 530.0,
                 ),
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+                      const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -148,15 +180,15 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 530.0,
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 12.0,
                       color: Color(0x1E000000),
@@ -166,14 +198,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 4.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 16.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -189,9 +221,9 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).accent1,
                                   textStyle:
@@ -223,11 +255,11 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                 options: FFButtonOptions(
                                   width: 100.0,
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0x4DF5898B),
+                                  color: const Color(0x4DF5898B),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -268,9 +300,9 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                           color: FlutterFlowTheme.of(context).alternate,
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -294,7 +326,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
                         // userEmail container
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 1.0),
                           child: Container(
                             width: double.infinity,
@@ -305,14 +337,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                 BoxShadow(
                                   blurRadius: 0.0,
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  offset: Offset(0.0, 1.0),
+                                  offset: const Offset(0.0, 1.0),
                                 )
                               ],
                               borderRadius: BorderRadius.circular(0.0),
                               shape: BoxShape.rectangle,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 5.0, 30.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -320,11 +352,11 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 3.0, 5.0, 5.0),
                                       child: TextFormField(
-                                        controller: _model.textController1,
-                                        focusNode: _model.textFieldFocusNode1,
+                                        controller:textController1,
+                                        focusNode:textFieldFocusNode1,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: FFLocalizations.of(context)
@@ -346,9 +378,9 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 24.0, 20.0, 24.0),
-                                          prefixIcon: Icon(
+                                          prefixIcon: const Icon(
                                             Icons.mail,
                                           ),
                                         ),
@@ -357,8 +389,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                         cursorColor:
                                             FlutterFlowTheme.of(context)
                                                 .primary,
-                                        validator: _model
-                                            .textController1Validator
+                                        validator: textController1Validator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -375,7 +406,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                           children: [
                             // FirstName container
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -387,14 +418,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(0.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -402,12 +433,12 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 5.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController2,
+                                            controller:textController2,
                                             focusNode:
-                                                _model.textFieldFocusNode2,
+                                               textFieldFocusNode2,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -472,10 +503,10 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.text_fields,
                                               ),
                                             ),
@@ -484,8 +515,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textController2Validator
+                                            validator: textController2Validator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -498,7 +528,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
                             // LastName container
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -510,14 +540,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(0.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -525,12 +555,12 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 5.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController3,
+                                            controller:textController3,
                                             focusNode:
-                                                _model.textFieldFocusNode3,
+                                               textFieldFocusNode3,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -595,10 +625,10 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.text_fields,
                                               ),
                                             ),
@@ -607,8 +637,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textController3Validator
+                                            validator: textController3Validator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -621,7 +650,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
                             // UserPhoneNumber container
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -633,14 +662,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(0.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -648,12 +677,12 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 5.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController4,
+                                            controller:textController4,
                                             focusNode:
-                                                _model.textFieldFocusNode4,
+                                               textFieldFocusNode4,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -718,10 +747,10 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.phone,
                                               ),
                                             ),
@@ -730,8 +759,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textController4Validator
+                                            validator: textController4Validator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -744,7 +772,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
                             // UserCompany container
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -756,14 +784,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(0.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -771,12 +799,12 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 5.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController5,
+                                            controller:textController5,
                                             focusNode:
-                                                _model.textFieldFocusNode5,
+                                               textFieldFocusNode5,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -841,10 +869,10 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.business,
                                               ),
                                             ),
@@ -853,8 +881,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textController5Validator
+                                            validator: textController5Validator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -867,7 +894,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
 
                             // UserAddress Container
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -879,14 +906,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(20.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -894,12 +921,12 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 5.0, 5.0),
                                           child: TextFormField(
-                                            controller: _model.textController6,
+                                            controller:textController6,
                                             focusNode:
-                                                _model.textFieldFocusNode6,
+                                               textFieldFocusNode6,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -964,10 +991,10 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                               contentPadding:
-                                                  EdgeInsetsDirectional
+                                                  const EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.location_on,
                                               ),
                                             ),
@@ -976,8 +1003,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
-                                            validator: _model
-                                                .textController6Validator
+                                            validator: textController6Validator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -991,7 +1017,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                             // userRoles Container
                             //
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
@@ -1003,20 +1029,20 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                   borderRadius: BorderRadius.circular(20.0),
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 5.0, 25.0, 15.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.key,
@@ -1026,7 +1052,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -1037,16 +1063,14 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                         ),
                                       ),
                                       FlutterFlowDropDown<String>(
-                                        controller: _model
-                                                .dropDownValueController ??=
-                                            FormFieldController<String>(null),
+                                        controller: dropDownValueController ??= FormFieldController<String>(null),
                                         options: [
                                           FFLocalizations.of(context).getText(
                                             '4jr6h7mu' /* Option 1 */,
                                           )
                                         ],
                                         onChanged: (val) => setState(
-                                            () => _model.dropDownValue = val),
+                                            () =>dropDownValue = val),
                                         width: 300.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -1069,7 +1093,7 @@ class _ModalEditUserInfoWidgetState extends State<ModalEditUserInfoWidget>
                                                 .alternate,
                                         borderWidth: 2.0,
                                         borderRadius: 8.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                        margin: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isSearchable: false,

@@ -16,9 +16,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'admin_users_list_model.dart';
-export 'admin_users_list_model.dart';
 
 class AdminUsersListWidget extends StatefulWidget {
   const AdminUsersListWidget({Key? key}) : super(key: key);
@@ -28,26 +25,32 @@ class AdminUsersListWidget extends StatefulWidget {
 }
 
 class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
-  late AdminUsersListModel _model;
+
+  final unfocusNode = FocusNode();
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for ChoiceChips widget.
+  String? choiceChipsValue;
+  FormFieldController<List<String>>? choiceChipsValueController;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AdminUsersListModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
+   
+   textController ??= TextEditingController();
+   textFieldFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
     super.dispose();
+    unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 
   @override
@@ -62,8 +65,8 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
     }
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+      onTap: () =>unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
@@ -76,20 +79,20 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0.00, -1.00),
+                  alignment: const AlignmentDirectional(0.00, -1.00),
                   child: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 970.0,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -98,9 +101,9 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                 Flexible(
                                   child: Align(
                                     alignment:
-                                        AlignmentDirectional(-1.00, 0.00),
+                                        const AlignmentDirectional(-1.00, 0.00),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 16.0, 0.0, 4.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
@@ -114,7 +117,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                 ),
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -123,15 +126,15 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         await showAlignedDialog(
-                                          barrierColor: Color(0x001D2428),
+                                          barrierColor: const Color(0x001D2428),
                                           context: context,
                                           isGlobal: false,
                                           avoidOverflow: true,
-                                          targetAnchor: AlignmentDirectional(
+                                          targetAnchor: const AlignmentDirectional(
                                                   1.0, 1.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          followerAnchor: AlignmentDirectional(
+                                          followerAnchor: const AlignmentDirectional(
                                                   1.0, -1.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -139,15 +142,15 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                             return Material(
                                               color: Colors.transparent,
                                               child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
+                                                onTap: () =>unfocusNode
                                                         .canRequestFocus
                                                     ? FocusScope.of(context)
                                                         .requestFocus(
-                                                            _model.unfocusNode)
+                                                           unfocusNode)
                                                     : FocusScope.of(context)
                                                         .unfocus(),
                                                 child:
-                                                    DropdownUserAccountWidget(),
+                                                    const DropdownUserAccountWidget(),
                                               ),
                                             );
                                           },
@@ -173,15 +176,15 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(2.0, 2.0, 2.0, 2.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: CachedNetworkImage(
-                                                  fadeInDuration: Duration(
+                                                  fadeInDuration: const Duration(
                                                       milliseconds: 500),
-                                                  fadeOutDuration: Duration(
+                                                  fadeOutDuration: const Duration(
                                                       milliseconds: 500),
                                                   imageUrl:
                                                       'https://i.imgur.com/oLYVGej.png',
@@ -198,7 +201,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                             tablet: false,
                                           ))
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 0.0, 0.0),
                                               child: Column(
@@ -232,7 +235,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 6.0)),
+                              ].divide(const SizedBox(width: 6.0)),
                             ),
                           ),
                           if (responsiveVisibility(
@@ -243,10 +246,10 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                             Container(
                               width: double.infinity,
                               height: 24.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 0.0, 4.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -257,7 +260,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 5.0, 0.0, 5.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -267,11 +270,11 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
+                              controller:textController,
+                              focusNode:textFieldFocusNode,
                               autofillHints: [AutofillHints.email],
                               obscureText: false,
                               decoration: InputDecoration(
@@ -311,7 +314,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 suffixIcon: Icon(
                                   Icons.search_rounded,
@@ -321,12 +324,12 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                               ),
                               style: FlutterFlowTheme.of(context).bodyMedium,
                               cursorColor: FlutterFlowTheme.of(context).primary,
-                              validator: _model.textControllerValidator
+                              validator:textControllerValidator
                                   .asValidator(context),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 5.0, 0.0, 18.0),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -334,7 +337,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: FlutterFlowChoiceChips(
                                       options: [
@@ -360,7 +363,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                         ))
                                       ],
                                       onChanged: (val) => setState(() =>
-                                          _model.choiceChipsValue = val?.first),
+                                         choiceChipsValue = val?.first),
                                       selectedChipStyle: ChipStyle(
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
@@ -427,10 +430,10 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       rowSpacing: 12.0,
                                       multiselect: false,
                                       initialized:
-                                          _model.choiceChipsValue != null,
+                                         choiceChipsValue != null,
                                       alignment: WrapAlignment.start,
                                       controller:
-                                          _model.choiceChipsValueController ??=
+                                         choiceChipsValueController ??=
                                               FormFieldController<List<String>>(
                                         [
                                           FFLocalizations.of(context).getText(
@@ -442,13 +445,13 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                     ),
                                   ),
                                 ]
-                                    .addToStart(SizedBox(width: 16.0))
-                                    .addToEnd(SizedBox(width: 16.0)),
+                                    .addToStart(const SizedBox(width: 16.0))
+                                    .addToEnd(const SizedBox(width: 16.0)),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -458,7 +461,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.00, 0.00),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -469,15 +472,15 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                     Container(
                                       width: 40.0,
                                       height: 100.0,
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                     ),
                                   Expanded(
                                     flex: 4,
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.00, 0.00),
+                                          const AlignmentDirectional(-1.00, 0.00),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -497,7 +500,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       flex: 2,
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
+                                            const AlignmentDirectional(-1.00, 0.00),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             '242ia2ts' /* Last Active */,
@@ -516,7 +519,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       flex: 3,
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
+                                            const AlignmentDirectional(-1.00, 0.00),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'zuqddh9p' /* Role */,
@@ -535,7 +538,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(1.00, 0.00),
+                                              const AlignmentDirectional(1.00, 0.00),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '58v147h0' /* Actions */,
@@ -552,7 +555,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                             ),
                           ),
                           ListView(
-                            padding: EdgeInsets.fromLTRB(
+                            padding: const EdgeInsets.fromLTRB(
                               0,
                               0,
                               0,
@@ -571,7 +574,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                       blurRadius: 0.0,
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      offset: Offset(0.0, 1.0),
+                                      offset: const Offset(0.0, 1.0),
                                     )
                                   ],
                                 ),
@@ -586,7 +589,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 14.0, 12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -608,7 +611,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     2.0, 2.0, 2.0, 2.0),
                                             child: ClipRRect(
                                               borderRadius:
@@ -626,7 +629,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                           flex: 4,
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     15.0, 0.0, 5.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -636,7 +639,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 0.0),
                                                   child: Text(
@@ -650,7 +653,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 0.0),
                                                   child: Text(
@@ -664,7 +667,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 12.0, 0.0),
                                                   child: Text(
@@ -694,7 +697,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 12.0, 5.0),
                                                   child: Text(
@@ -723,7 +726,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 12.0, 5.0),
                                                   child: Text(
@@ -751,7 +754,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                              ].divide(SizedBox(height: 4.0)),
+                                              ].divide(const SizedBox(height: 4.0)),
                                             ),
                                           ),
                                         ),
@@ -762,7 +765,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                           Expanded(
                                             flex: 2,
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 12.0, 0.0),
                                               child: Text(
@@ -784,7 +787,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                           Expanded(
                                             flex: 3,
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.00, 0.00),
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -805,7 +808,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                               AlignedTooltip(
                                                 content: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 4.0,
                                                                 4.0, 4.0),
                                                     child: Text(
@@ -831,14 +834,14 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
+                                                    const Duration(milliseconds: 100),
+                                                showDuration: const Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.00, 0.00),
                                                   child: Builder(
                                                     builder: (context) =>
@@ -860,13 +863,13 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                           isGlobal: false,
                                                           avoidOverflow: false,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       1.0, 1.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       1.0, -1.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -878,18 +881,16 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                                   .transparent,
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
+                                                                onTap: () =>  unfocusNode
                                                                         .canRequestFocus
                                                                     ? FocusScope.of(
                                                                             context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
+                                                                        .requestFocus(unfocusNode)
                                                                     : FocusScope.of(
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    AdminDropDownManageUsersWidget(),
+                                                                    const AdminDropDownManageUsersWidget(),
                                                               ),
                                                             );
                                                           },
@@ -901,12 +902,12 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.00, 0.00),
                                                 child: AlignedTooltip(
                                                   content: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   4.0,
@@ -936,9 +937,9 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: Duration(
+                                                  waitDuration: const Duration(
                                                       milliseconds: 100),
-                                                  showDuration: Duration(
+                                                  showDuration: const Duration(
                                                       milliseconds: 1500),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -951,7 +952,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.00, 0.00),
                                                       child:
                                                           FlutterFlowIconButton(
@@ -979,7 +980,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                               AlignedTooltip(
                                                 content: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 4.0,
                                                                 4.0, 4.0),
                                                     child: Text(
@@ -1005,8 +1006,8 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
+                                                    const Duration(milliseconds: 100),
+                                                showDuration: const Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
@@ -1018,7 +1019,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.00, 0.00),
                                                     child:
                                                         FlutterFlowIconButton(
@@ -1046,14 +1047,12 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                           context: context,
                                                           builder: (context) {
                                                             return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
+                                                              onTap: () => unfocusNode
                                                                       .canRequestFocus
                                                                   ? FocusScope.of(
                                                                           context)
                                                                       .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
+                                                                           unfocusNode)
                                                                   : FocusScope.of(
                                                                           context)
                                                                       .unfocus(),
@@ -1062,7 +1061,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                                     .viewInsetsOf(
                                                                         context),
                                                                 child:
-                                                                    ModalEditUserInfoWidget(),
+                                                                    const ModalEditUserInfoWidget(),
                                                               ),
                                                             );
                                                           },
@@ -1077,7 +1076,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                               AlignedTooltip(
                                                 content: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(4.0, 4.0,
                                                                 4.0, 4.0),
                                                     child: Text(
@@ -1103,8 +1102,8 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
+                                                    const Duration(milliseconds: 100),
+                                                showDuration: const Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
@@ -1116,7 +1115,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                   ),
                                                   child: Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.00, 0.00),
                                                     child:
                                                         FlutterFlowIconButton(
@@ -1145,14 +1144,12 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                           context: context,
                                                           builder: (context) {
                                                             return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
+                                                              onTap: () => unfocusNode
                                                                       .canRequestFocus
                                                                   ? FocusScope.of(
                                                                           context)
                                                                       .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
+                                                                          unfocusNode)
                                                                   : FocusScope.of(
                                                                           context)
                                                                       .unfocus(),
@@ -1161,7 +1158,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                                                     .viewInsetsOf(
                                                                         context),
                                                                 child:
-                                                                    ModalAssignTrainingWidget(),
+                                                                    const ModalAssignTrainingWidget(),
                                                               ),
                                                             );
                                                           },
@@ -1181,7 +1178,7 @@ class _AdminUsersListWidgetState extends State<AdminUsersListWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 3.0)),
+                            ].divide(const SizedBox(height: 3.0)),
                           ),
                         ],
                       ),

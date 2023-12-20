@@ -9,12 +9,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'register_page_model.dart';
-export 'register_page_model.dart';
+
+
 
 class RegisterPageWidget extends StatefulWidget {
   const RegisterPageWidget({Key? key}) : super(key: key);
@@ -24,35 +22,62 @@ class RegisterPageWidget extends StatefulWidget {
 }
 
 class _RegisterPageWidgetState extends State<RegisterPageWidget> {
-  late RegisterPageModel _model;
 
+  final unfocusNode = FocusNode();
+  final formKey = GlobalKey<FormState>();
+  FocusNode? emailAddressFieldFocusNode1;
+  FocusNode? emailAddressFieldFocusNode2;
+  FocusNode? emailAddressFieldFocusNode3;
+  FocusNode? emailAddressFieldFocusNode4;
+  FocusNode? passwordFieldFocusNode1;
+  FocusNode? passwordFieldFocusNode2;
+
+  TextEditingController? emailAddressFieldController1;
+  TextEditingController? emailAddressFieldController2;
+  TextEditingController? emailAddressFieldController3;
+  TextEditingController? emailAddressFieldController4;
+  TextEditingController? passwordFieldController1;
+  TextEditingController? passwordFieldController2;
+
+  String? Function(BuildContext, String?)? emailAddressFieldController1Validator;
+  String? Function(BuildContext, String?)? emailAddressFieldController2Validator;
+  String? Function(BuildContext, String?)? emailAddressFieldController3Validator;
+  String? Function(BuildContext, String?)? emailAddressFieldController4Validator;
+  String? Function(BuildContext, String?)? passwordFieldController1Validator;
+  String? Function(BuildContext, String?)? passwordFieldController2Validator;
+
+  late bool passwordFieldVisibility1;
+  late bool passwordFieldVisibility2;
+  
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RegisterPageModel());
 
-    _model.emailAddressFieldController1 ??= TextEditingController();
-    _model.emailAddressFieldFocusNode1 ??= FocusNode();
+    passwordFieldVisibility1 = false;
+    passwordFieldVisibility2 = false;
 
-    _model.emailAddressFieldController2 ??= TextEditingController();
-    _model.emailAddressFieldFocusNode2 ??= FocusNode();
+    emailAddressFieldController1 ??= TextEditingController();
+    emailAddressFieldFocusNode1 ??= FocusNode();
 
-    _model.emailAddressFieldController3 ??= TextEditingController();
-    _model.emailAddressFieldFocusNode3 ??= FocusNode();
+    emailAddressFieldController2 ??= TextEditingController();
+    emailAddressFieldFocusNode2 ??= FocusNode();
 
-    _model.emailAddressFieldController4 ??= TextEditingController();
-    _model.emailAddressFieldFocusNode4 ??= FocusNode();
+    emailAddressFieldController3 ??= TextEditingController();
+    emailAddressFieldFocusNode3 ??= FocusNode();
 
-    _model.passwordFieldController1 ??= TextEditingController();
-    _model.passwordFieldFocusNode1 ??= FocusNode();
+    emailAddressFieldController4 ??= TextEditingController();
+    emailAddressFieldFocusNode4 ??= FocusNode();
 
-    _model.passwordFieldController2 ??= TextEditingController();
-    _model.passwordFieldFocusNode2 ??= FocusNode();
+    passwordFieldController1 ??= TextEditingController();
+    passwordFieldFocusNode1 ??= FocusNode();
+
+    passwordFieldController2 ??= TextEditingController();
+    passwordFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-          _model.emailAddressFieldController4?.text =
+          emailAddressFieldController4?.text =
               FFLocalizations.of(context).getText(
             '7z27jfxh' /* Email@gmail.com */,
           );
@@ -61,9 +86,29 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+
+    unfocusNode.dispose();
+
+    emailAddressFieldFocusNode1?.dispose();
+    emailAddressFieldController1?.dispose();
+
+    emailAddressFieldFocusNode2?.dispose();
+    emailAddressFieldController2?.dispose();
+
+    emailAddressFieldFocusNode3?.dispose();
+    emailAddressFieldController3?.dispose();
+
+    emailAddressFieldFocusNode4?.dispose();
+    emailAddressFieldController4?.dispose();
+
+    passwordFieldFocusNode1?.dispose();
+    passwordFieldController1?.dispose();
+
+    passwordFieldFocusNode2?.dispose();
+    passwordFieldController2?.dispose();
 
     super.dispose();
+
   }
 
   @override
@@ -78,8 +123,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
     }
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+      onTap: () => unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
@@ -96,19 +141,19 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0.00, -1.00),
+                    alignment: const AlignmentDirectional(0.00, -1.00),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.00, 0.00),
                             child: Container(
                               width: double.infinity,
                               height: MediaQuery.sizeOf(context).height * 0.098,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -116,7 +161,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   children: [
                                     AlignedTooltip(
                                       content: Padding(
-                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                               4.0, 4.0, 4.0, 4.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -134,11 +179,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                       elevation: 4.0,
                                       tailBaseWidth: 24.0,
                                       tailLength: 12.0,
-                                      waitDuration: Duration(milliseconds: 100),
-                                      showDuration: Duration(milliseconds: 1500),
+                                      waitDuration: const Duration(milliseconds: 100),
+                                      showDuration: const Duration(milliseconds: 1500),
                                       triggerMode: TooltipTriggerMode.tap,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             18.0, 0.0, 0.0, 0.0),
                                         child: FlutterFlowIconButton(
                                           borderColor:
@@ -170,9 +215,9 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     Flexible(
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.00, 0.00),
+                                            const AlignmentDirectional(1.00, 0.00),
                                         child: Padding(
-                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 25.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -218,14 +263,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.00, 0.00),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 25.0, 0.0, 0.0),
                               child: Container(
                                 width: 360.0,
                                 height: MediaQuery.sizeOf(context).height * 1.0,
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -259,7 +304,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         desktop: false,
                                       ))
                                         Padding(
-                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 12.0, 0.0, 0.0),
                                           child: SelectionArea(
                                               child: Text(
@@ -283,10 +328,10 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                           )),
                                         ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 25.0, 0.0, 0.0),
                                         child: Form(
-                                          key: _model.formKey,
+                                          key: formKey,
                                           autovalidateMode:
                                               AutovalidateMode.disabled,
                                           child: Column(
@@ -299,14 +344,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Padding(
-                                                    padding: EdgeInsetsDirectional
+                                                    padding: const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 6.0, 0.0, 0.0),
                                                     child: TextFormField(
-                                                      controller: _model
-                                                          .emailAddressFieldController1,
-                                                      focusNode: _model
-                                                          .emailAddressFieldFocusNode1,
+                                                      controller: emailAddressFieldController1,
+                                                      focusNode: emailAddressFieldFocusNode1,
                                                       obscureText: false,
                                                       decoration: InputDecoration(
                                                         labelText:
@@ -361,7 +404,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                 ),
                                                         enabledBorder:
                                                             OutlineInputBorder(
-                                                          borderSide: BorderSide(
+                                                          borderSide: const BorderSide(
                                                             color:
                                                                 Color(0xFFD0D5DD),
                                                             width: 1.0,
@@ -384,7 +427,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                         ),
                                                         errorBorder:
                                                             OutlineInputBorder(
-                                                          borderSide: BorderSide(
+                                                          borderSide: const BorderSide(
                                                             color:
                                                                 Color(0xFFFDA29B),
                                                             width: 1.0,
@@ -395,7 +438,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                         ),
                                                         focusedErrorBorder:
                                                             OutlineInputBorder(
-                                                          borderSide: BorderSide(
+                                                          borderSide: const BorderSide(
                                                             color:
                                                                 Color(0xFFFDA29B),
                                                             width: 1.0,
@@ -405,7 +448,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                   .circular(8.0),
                                                         ),
                                                         contentPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     14.0,
                                                                     10.0,
@@ -432,8 +475,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         .bodyMediumFamily),
                                                             lineHeight: 1.5,
                                                           ),
-                                                      validator: _model
-                                                          .emailAddressFieldController1Validator
+                                                      validator: emailAddressFieldController1Validator
                                                           .asValidator(context),
                                                     ),
                                                   ),
@@ -442,7 +484,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                                               // LastName Column
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Column(
@@ -452,14 +494,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(0.0, 6.0,
                                                                   0.0, 0.0),
                                                       child: TextFormField(
-                                                        controller: _model
-                                                            .emailAddressFieldController2,
-                                                        focusNode: _model
-                                                            .emailAddressFieldFocusNode2,
+                                                        controller: emailAddressFieldController2,
+                                                        focusNode: emailAddressFieldFocusNode2,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -520,7 +560,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFD0D5DD),
                                                               width: 1.0,
@@ -547,7 +587,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           errorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -560,7 +600,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -571,7 +611,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         8.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       14.0,
                                                                       10.0,
@@ -597,8 +637,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                               .bodyMediumFamily),
                                                                   lineHeight: 1.5,
                                                                 ),
-                                                        validator: _model
-                                                            .emailAddressFieldController2Validator
+                                                        validator: emailAddressFieldController2Validator
                                                             .asValidator(context),
                                                       ),
                                                     ),
@@ -608,7 +647,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                                               // PhoneNumber Column
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Column(
@@ -618,14 +657,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(0.0, 6.0,
                                                                   0.0, 0.0),
                                                       child: TextFormField(
-                                                        controller: _model
-                                                            .emailAddressFieldController3,
-                                                        focusNode: _model
-                                                            .emailAddressFieldFocusNode3,
+                                                        controller: emailAddressFieldController3,
+                                                        focusNode: emailAddressFieldFocusNode3,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -686,7 +723,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFD0D5DD),
                                                               width: 1.0,
@@ -713,7 +750,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           errorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -726,7 +763,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -737,7 +774,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         8.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       14.0,
                                                                       10.0,
@@ -765,8 +802,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                 ),
                                                         keyboardType:
                                                             TextInputType.phone,
-                                                        validator: _model
-                                                            .emailAddressFieldController3Validator
+                                                        validator: emailAddressFieldController3Validator
                                                             .asValidator(context),
                                                       ),
                                                     ),
@@ -774,7 +810,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Column(
@@ -784,14 +820,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(0.0, 6.0,
                                                                   0.0, 0.0),
                                                       child: TextFormField(
-                                                        controller: _model
-                                                            .emailAddressFieldController4,
-                                                        focusNode: _model
-                                                            .emailAddressFieldFocusNode4,
+                                                        controller: emailAddressFieldController4,
+                                                        focusNode: emailAddressFieldFocusNode4,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -852,7 +886,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFD0D5DD),
                                                               width: 1.0,
@@ -879,7 +913,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           errorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -892,7 +926,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -903,7 +937,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         8.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       14.0,
                                                                       10.0,
@@ -932,8 +966,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                         keyboardType:
                                                             TextInputType
                                                                 .emailAddress,
-                                                        validator: _model
-                                                            .emailAddressFieldController4Validator
+                                                        validator: emailAddressFieldController4Validator
                                                             .asValidator(context),
                                                       ),
                                                     ),
@@ -943,7 +976,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                                               // Password Column
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Column(
@@ -953,16 +986,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(0.0, 6.0,
                                                                   0.0, 0.0),
                                                       child: TextFormField(
-                                                        controller: _model
-                                                            .passwordFieldController1,
-                                                        focusNode: _model
-                                                            .passwordFieldFocusNode1,
-                                                        obscureText: !_model
-                                                            .passwordFieldVisibility1,
+                                                        controller: passwordFieldController1,
+                                                        focusNode: passwordFieldFocusNode1,
+                                                        obscureText: !passwordFieldVisibility1,
                                                         decoration:
                                                             InputDecoration(
                                                           labelText:
@@ -1022,7 +1052,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFD0D5DD),
                                                               width: 1.0,
@@ -1049,7 +1079,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           errorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -1062,7 +1092,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -1073,7 +1103,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         8.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       14.0,
                                                                       10.0,
@@ -1081,16 +1111,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                       10.0),
                                                           suffixIcon: InkWell(
                                                             onTap: () => setState(
-                                                              () => _model
-                                                                      .passwordFieldVisibility1 =
-                                                                  !_model
-                                                                      .passwordFieldVisibility1,
+                                                              () =>  passwordFieldVisibility1 =
+                                                                  !passwordFieldVisibility1,
                                                             ),
                                                             focusNode: FocusNode(
                                                                 skipTraversal:
                                                                     true),
                                                             child: Icon(
-                                                              _model.passwordFieldVisibility1
+                                                              passwordFieldVisibility1
                                                                   ? Icons
                                                                       .visibility_outlined
                                                                   : Icons
@@ -1121,8 +1149,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                               .bodyMediumFamily),
                                                                   lineHeight: 1.5,
                                                                 ),
-                                                        validator: _model
-                                                            .passwordFieldController1Validator
+                                                        validator: passwordFieldController1Validator
                                                             .asValidator(context),
                                                       ),
                                                     ),
@@ -1132,7 +1159,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                                               // ConfirmPassword Column
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: Column(
@@ -1142,16 +1169,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(0.0, 6.0,
                                                                   0.0, 0.0),
                                                       child: TextFormField(
-                                                        controller: _model
-                                                            .passwordFieldController2,
-                                                        focusNode: _model
-                                                            .passwordFieldFocusNode2,
-                                                        obscureText: !_model
-                                                            .passwordFieldVisibility2,
+                                                        controller: passwordFieldController2,
+                                                        focusNode: passwordFieldFocusNode2,
+                                                        obscureText: !passwordFieldVisibility2,
                                                         decoration:
                                                             InputDecoration(
                                                           labelText:
@@ -1211,7 +1235,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFD0D5DD),
                                                               width: 1.0,
@@ -1238,7 +1262,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           errorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -1251,7 +1275,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Color(
                                                                   0xFFFDA29B),
                                                               width: 1.0,
@@ -1262,7 +1286,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                         8.0),
                                                           ),
                                                           contentPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       14.0,
                                                                       10.0,
@@ -1270,16 +1294,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                       10.0),
                                                           suffixIcon: InkWell(
                                                             onTap: () => setState(
-                                                              () => _model
-                                                                      .passwordFieldVisibility2 =
-                                                                  !_model
-                                                                      .passwordFieldVisibility2,
+                                                              () => passwordFieldVisibility2 =
+                                                                  !passwordFieldVisibility2,
                                                             ),
                                                             focusNode: FocusNode(
                                                                 skipTraversal:
                                                                     true),
                                                             child: Icon(
-                                                              _model.passwordFieldVisibility2
+                                                              passwordFieldVisibility2
                                                                   ? Icons
                                                                       .visibility_outlined
                                                                   : Icons
@@ -1310,8 +1332,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                                               .bodyMediumFamily),
                                                                   lineHeight: 1.5,
                                                                 ),
-                                                        validator: _model
-                                                            .passwordFieldController2Validator
+                                                        validator: passwordFieldController2Validator
                                                             .asValidator(context),
                                                       ),
                                                     ),
@@ -1323,13 +1344,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            if (_model.formKey.currentState ==
+                                            if (formKey.currentState ==
                                                     null ||
-                                                !_model.formKey.currentState!
+                                                !formKey.currentState!
                                                     .validate()) {
                                               return;
                                             }
@@ -1342,10 +1363,10 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                             width: double.infinity,
                                             height: 44.0,
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -1367,7 +1388,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                               .titleSmallFamily),
                                                 ),
                                             elevation: 2.0,
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -1377,7 +1398,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1447,7 +1468,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
 
                                       // Terms of use & Privacy Policy
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1553,7 +1574,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     width: 100.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: CachedNetworkImageProvider(
                           'https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
@@ -1562,9 +1583,9 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       borderRadius: BorderRadius.circular(0.0),
                     ),
                     child: Align(
-                      alignment: AlignmentDirectional(0.00, 1.00),
+                      alignment: const AlignmentDirectional(0.00, 1.00),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             48.0, 0.0, 48.0, 48.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
@@ -1576,15 +1597,15 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0x10FFFFFF),
+                                color: const Color(0x10FFFFFF),
                                 borderRadius: BorderRadius.circular(12.0),
                                 border: Border.all(
-                                  color: Color(0x1AFFFFFF),
+                                  color: const Color(0x1AFFFFFF),
                                   width: 2.0,
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 24.0, 24.0, 24.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -1615,7 +1636,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                           ),
                                     )),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 32.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1630,7 +1651,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: SelectionArea(
@@ -1678,7 +1699,7 @@ fo... */
                                                                       context)
                                                                   .bodySmallFamily,
                                                           color:
-                                                              Color(0x7FF1F4F8),
+                                                              const Color(0x7FF1F4F8),
                                                           fontSize: 18.0,
                                                           fontWeight:
                                                               FontWeight.w500,

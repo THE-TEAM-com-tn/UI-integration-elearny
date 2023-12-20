@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
-
 import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
@@ -128,8 +126,7 @@ FFPlace placeFromString(String placeStr) {
   );
 }
 
-FFUploadedFile uploadedFileFromString(String uploadedFileStr) =>
-    FFUploadedFile.deserialize(uploadedFileStr);
+FFUploadedFile uploadedFileFromString(String uploadedFileStr) => FFUploadedFile.deserialize(uploadedFileStr);
 
 enum ParamType {
   int,

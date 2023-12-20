@@ -1,19 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-
-import '/index.dart';
-import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:provider/provider.dart';
+import '/index.dart';
 import 'serialization_util.dart';
-
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
@@ -30,8 +22,8 @@ class AppStateNotifier extends ChangeNotifier {
   void stopShowingSplashImage() {
     showSplashImage = false;
     notifyListeners();
-  }
-}
+   }
+ }
 
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
@@ -47,8 +39,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : OnBoardingPageWidget(),
+          : const OnBoardingPageWidget(),
       routes: [
+
+
         FFRoute(
           name: '_initialize',
           path: '/',
@@ -62,73 +56,90 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : OnBoardingPageWidget(),
+              : const OnBoardingPageWidget(),
         ),
+
+
         FFRoute(
           name: 'RegisterPage',
           path: '/registerPage',
-          builder: (context, params) => RegisterPageWidget(),
+          builder: (context, params) => const RegisterPageWidget(),
         ),
+
         FFRoute(
           name: 'LoginPage',
           path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => const LoginPageWidget(),
         ),
+
         FFRoute(
           name: 'OnBoardingPage',
           path: '/onBoardingPage',
-          builder: (context, params) => OnBoardingPageWidget(),
+          builder: (context, params) => const OnBoardingPageWidget(),
         ),
+
         FFRoute(
           name: 'ForgotPasswordPage',
           path: '/forgotPasswordPage',
-          builder: (context, params) => ForgotPasswordPageWidget(),
+          builder: (context, params) => const ForgotPasswordPageWidget(),
         ),
+
         FFRoute(
           name: 'ChangePassword',
           path: '/changePasswordPage',
-          builder: (context, params) => ChangePasswordWidget(),
+          builder: (context, params) => const ChangePasswordWidget(),
         ),
+
         FFRoute(
           name: 'Admin_users_list',
           path: '/adminUsersList',
-          builder: (context, params) => AdminUsersListWidget(),
+          builder: (context, params) => const AdminUsersListWidget(),
         ),
+
         FFRoute(
           name: 'EditProfilePage',
           path: '/editProfile',
-          builder: (context, params) => EditProfilePageWidget(),
+          builder: (context, params) => const EditProfilePageWidget(),
         ),
+
         FFRoute(
           name: 'UserHomePage',
           path: '/userHomePage',
-          builder: (context, params) => UserHomePageWidget(),
+          builder: (context, params) => const UserHomePageWidget(),
         ),
+
         FFRoute(
           name: 'AdminHomePage',
           path: '/adminHomePage',
-          builder: (context, params) => AdminHomePageWidget(),
+          builder: (context, params) => const AdminHomePageWidget(),
         ),
+
         FFRoute(
           name: 'SuperAdminHomePage',
           path: '/superAdminHomePage',
-          builder: (context, params) => SuperAdminHomePageWidget(),
+          builder: (context, params) => const SuperAdminHomePageWidget(),
         ),
+
         FFRoute(
           name: 'ContentManagerHomePage',
           path: '/contentManagerHomePage',
-          builder: (context, params) => ContentManagerHomePageWidget(),
+          builder: (context, params) => const ContentManagerHomePageWidget(),
         ),
+
         FFRoute(
           name: 'AnonymousUserHomePage',
           path: '/anonymousUserHomePage',
-          builder: (context, params) => AnonymousUserHomePageWidget(),
+          builder: (context, params) => const AnonymousUserHomePageWidget(),
         ),
+
         FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
-          builder: (context, params) => ProfilePageWidget(),
-        )
+          builder: (context, params) => const ProfilePageWidget(),
+        ),
+
+
+
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
